@@ -1,31 +1,21 @@
-<html lang="en" dir="ltr">
+<%- include('header') -%>
 
-<head>
-    <meta charset="utf-8" />
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+<div id="heading" class="box">
+    <h1><%= listTitle %></h1>
+</div>
 
-<body>
-    <div id="heading" class="box">
-        <h1><%= kindOfDay %></h1>
+<div class="box">
+    <%for (let i = 0; i<newListItems.length; i++) {%>
+    <div class="item">
+        <input type="checkbox">
+        <p> <%= newListItems[i] %> </p>
     </div>
-
-    <div class="box">
-        <%for (let i = 0; i<newListItems.length; i++) {%>
-        <div class="item">
-            <input type="checkbox">
-            <p> <%= newListItems[i] %> </p>
-        </div>
-        <%}%>
+    <%}%>
     
         <form class="item" action="/" method="POST">
             <input type="text" placeholder="New Item" name="newItem" autocomplete="off">
-            <button type="submit" name="button">+</button>
-        </form>
+            <button type="submit" name="list" value=<%= listTitle %>>+</button>
+    </form>
 
-    </div>
-
-</body>
-
-</html>
+</div>
+<%- include('footer') -%>
