@@ -4,3 +4,4 @@
 
 <% 'Scriptlet' tag. for control-flow, no output. It allows us to use JavaScript code in a EJS template.
     Works line by line! Which means you have to put that tag to EVERY LINE of the JavaScript code!
+

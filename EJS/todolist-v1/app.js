@@ -4,42 +4,32 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+let items = ["Buy Food", "Cook Food", "Eat Food"];
 
 app.get('/', (req, res) => {
     const today = new Date();
-    const currentDay = today.getDay();
-    let day = '';
 
-    switch (currentDay) {
-        case 0:
-            day = 'Sunday'
-            break;
-        case 1:
-            day = 'Monday'
-            break;
-        case 2:
-            day = 'Thuesday'
-            break;
-        case 3:
-            day = 'Wednesday'
-            break;
-        case 4:
-            day = 'Thursday'
-            break;
-        case 5:
-            day = 'Friday'
-            break;
-        case 6:
-            day = 'Saturday'
-            break;
-        default:
-            console.log('Wrong day value! The assigend value to day is ' + day);
+    const options = {
+        weekday: "long",
+        day: "numeric",
+        month: "long"
     };
 
+    const day = today.toLocaleDateString('en-US', options);
+
     res.render('list', {
-        kindOfDay: day
+        kindOfDay: day,
+        newListItems: items
     });
 
+});
+
+app.post('/', (req, res) => {
+    item = req.body.newItem;
+    items.push(item);
+    res.redirect('/');
 });
 
 app.listen(3000, () => {
